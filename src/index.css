@@ -1,0 +1,248 @@
+@import '@fontsource-variable/bricolage-grotesque/standard.css';
+@import '@fontsource/instrument-serif/latin-400.css';
+@import '@fontsource/instrument-serif/latin-400-italic.css';
+@import '@fontsource-variable/jetbrains-mono/index.css';
+@import 'tailwindcss';
+
+@theme {
+  --color-bone: #eae5da;
+  --color-bone-2: #ddd7c9;
+  --color-ink: #121110;
+  --color-ink-2: #1c1b18;
+  --color-rust: #d9461f;
+  --color-lichen: #c9dc4c;
+  --color-mute: #6e695f;
+  --color-line: #12111026;
+
+  --font-display: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap: cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+/* ---------- base ---------- */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+body {
+  margin: 0;
+  background-color: var(--color-bone);
+  /* paper grain: one small SVG tile, rasterized once */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.07 0 0 0 0 0.06 0 0 0 0 0.05 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 100;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+::selection {
+  background: var(--color-rust);
+  color: var(--color-bone);
+}
+:focus-visible {
+  outline: 2px solid var(--color-rust);
+  outline-offset: 3px;
+}
+section[id], article[id] {
+  scroll-margin-top: 0;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.serif-i {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- scroll reveals (driven by one IntersectionObserver) ---------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.9s var(--ease-expo),
+    transform 0.9s var(--ease-expo);
+  transition-delay: var(--d, 0ms);
+}
+[data-reveal='clip'],
+[data-reveal='x'] {
+  opacity: 1;
+  transform: scaleY(0.001);
+  transform-origin: top;
+  transition: transform 1.2s var(--ease-expo);
+  transition-delay: var(--d, 0ms);
+}
+[data-reveal='x'] {
+  transform: scaleX(0.001);
+  transform-origin: left;
+}
+[data-reveal='line'] {
+  opacity: 1;
+  transform: none;
+  overflow: hidden;
+}
+[data-reveal='line'] > * {
+  display: block;
+  transform: translate3d(0, 105%, 0);
+  transition: transform 1s var(--ease-expo);
+  transition-delay: var(--d, 0ms);
+}
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+[data-reveal='line'].is-in > * {
+  transform: none;
+}
+
+/* ---------- hero name ---------- */
+.name-letter {
+  display: inline-block;
+  font-variation-settings: 'wght' var(--w, 260), 'wdth' var(--s, 100);
+  transition: font-variation-settings 0.5s var(--ease-expo);
+  animation: letter-rise 1.2s var(--ease-expo) both;
+  animation-delay: calc(var(--i) * 55ms + 120ms);
+}
+@keyframes letter-rise {
+  from { transform: translate3d(0, 0.9em, 0) rotate(6deg); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.fade-up {
+  animation: fade-up 1s var(--ease-expo) both;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes fade-up {
+  from { transform: translate3d(0, 16px, 0); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+/* ---------- schematic ---------- */
+.wire-flow {
+  stroke-dasharray: 3 9;
+  animation: wire 1.6s linear infinite;
+}
+@keyframes wire {
+  to { stroke-dashoffset: -24; }
+}
+
+/* ---------- scroll-driven word reveal (progressive enhancement) ---------- */
+@supports (animation-timeline: view()) {
+  .read-para {
+    view-timeline-name: --para;
+  }
+  .read-para .w {
+    opacity: 0.16;
+    animation: word-on linear both;
+    animation-timeline: --para;
+    animation-range: cover calc(18% + var(--p) * 30%) cover calc(22% + var(--p) * 30%);
+  }
+  @keyframes word-on {
+    to { opacity: 1; }
+  }
+  .scroll-bar {
+    animation: grow linear both;
+    animation-timeline: scroll(root);
+  }
+  @keyframes grow {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+}
+
+/* ---------- tactile button ---------- */
+.btn-press {
+  --sh: 5px;
+  box-shadow: var(--sh) var(--sh) 0 0 var(--shc, currentColor);
+  transition:
+    transform 0.18s var(--ease-expo),
+    box-shadow 0.18s var(--ease-expo),
+    background-color 0.25s,
+    color 0.25s;
+}
+.btn-press:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: calc(var(--sh) + 2px) calc(var(--sh) + 2px) 0 0 var(--shc, currentColor);
+}
+.btn-press:active {
+  transform: translate(var(--sh), var(--sh));
+  box-shadow: 0 0 0 0 var(--shc, currentColor);
+  transition-duration: 0.05s;
+}
+
+/* ---------- marquee ---------- */
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+/* ---------- misc loops (paused offscreen via .is-live) ---------- */
+.spin-slow {
+  animation: spin 24s linear infinite;
+  animation-play-state: paused;
+}
+.is-in .spin-slow,
+.spin-slow.is-in {
+  animation-play-state: running;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.scan {
+  animation: scan 3.6s var(--ease-snap) infinite alternate;
+}
+@keyframes scan {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, var(--scan-h, 300px), 0); }
+}
+.blink {
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.pop-in {
+  animation: pop-in 0.6s var(--ease-expo) both;
+}
+@keyframes pop-in {
+  from { transform: translate3d(0, 10px, 0) scale(0.96); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+/* ---------- case file overlay ---------- */
+.case-overlay {
+  clip-path: circle(0px at var(--ox, 50%) var(--oy, 50%));
+  transition: clip-path 0.75s var(--ease-snap);
+}
+.case-overlay.is-open {
+  clip-path: circle(150vmax at var(--ox, 50%) var(--oy, 50%));
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  [data-reveal], [data-reveal='line'] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  .read-para .w { opacity: 1 !important; animation: none !important; }
+}
