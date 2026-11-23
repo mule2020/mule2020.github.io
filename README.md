@@ -12,7 +12,7 @@ npm run preview
 ## Before publishing
 
 1. **Résumé** — put your PDF at `public/Muluken-Bekele-Resume.pdf` (or change `resumeUrl` in `src/data/profile.ts`).
-2. **Email** — set `email` in `src/data/profile.ts`. When it is filled in, the contact section shows an email row with a copy button. While it is empty, that row is hidden.
+2. **Contact form** — with `formEndpoint` empty in `src/data/profile.ts`, the form opens the visitor's mail app with the message pre-filled. To receive messages directly without that step, create a free form endpoint (e.g. Formspree), paste its URL into `formEndpoint`, and the form will POST JSON to it.
 3. **Dates** — the experience section shows roles in order without dates. Add them in `src/data/experience.ts` if you want them on the page.
 
 ## Where things live

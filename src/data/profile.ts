@@ -1,6 +1,5 @@
 /**
  * Single source of truth for personal details.
- * Fill in `email` (and optionally `location`) from your résumé — empty values are hidden in the UI.
  * Drop your résumé PDF into /public using the filename in `resumeUrl`.
  */
 export const profile = {
@@ -8,13 +7,16 @@ export const profile = {
   first: 'Muluken',
   last: 'Bekele',
   roles: ['Full-Stack Software Developer', 'AI & Cloud Applications'],
-  email: '',
+  email: 'mulukenbekele121@gmail.com',
   location: '',
   github: 'https://github.com/mule2020',
   githubHandle: 'mule2020',
-  linkedin: 'https://linkedin.com/in/mulle-g',
-  linkedinHandle: 'mulle-g',
   resumeUrl: '/Muluken-Bekele-Resume.pdf',
+  /**
+   * Optional form backend (e.g. a Formspree endpoint like https://formspree.io/f/xxxxxxx).
+   * When empty, the contact form opens the visitor's mail app with the message pre-filled.
+   */
+  formEndpoint: '',
 }
 
 export const certifications = [

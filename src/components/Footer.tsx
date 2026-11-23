@@ -34,7 +34,7 @@ export default function Footer() {
         </nav>
         <ul className="mono space-y-2 lg:col-span-2">
           <li><a href={profile.github} target="_blank" rel="noreferrer" className="text-bone/60 hover:text-lichen">GitHub ↗</a></li>
-          <li><a href={profile.linkedin} target="_blank" rel="noreferrer" className="text-bone/60 hover:text-lichen">LinkedIn ↗</a></li>
+          <li><a href={`mailto:${profile.email}`} className="text-bone/60 hover:text-lichen">Email ↗</a></li>
           <li><a href={profile.resumeUrl} download className="text-bone/60 hover:text-lichen">Résumé ↓</a></li>
         </ul>
         <div className="lg:col-span-2 lg:justify-self-end">
