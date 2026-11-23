@@ -1,4 +1,4 @@
-import { useMemo, useState, type CSSProperties } from 'react'
+import { useState, type CSSProperties } from 'react'
 import { layers, type Skill } from '../data/skills'
 import { projects, type ProjectId } from '../data/projects'
 import SectionLabel from './SectionLabel'
@@ -9,14 +9,12 @@ export default function Skills() {
   const [proj, setProj] = useState<ProjectId | null>(null)
   const engaged = skill !== null || proj !== null
 
-  const total = useMemo(() => layers.reduce((n, l) => n + l.skills.length, 0), [])
-
   const skillLit = (s: Skill) => (skill ? skill.name === s.name : proj ? s.projects.includes(proj) : false)
   const projLit = (id: ProjectId) => (skill ? skill.projects.includes(id) : proj === id)
 
   return (
     <section id="skills" className="relative px-4 py-20 sm:px-8 sm:py-28">
-      <SectionLabel n="03" label="Stack" aside={`${total} tools · ${layers.length} layers`} />
+      <SectionLabel n="03" label="Stack" />
 
       <div className="mt-10 grid gap-12 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-4">
@@ -29,7 +27,7 @@ export default function Skills() {
               <span data-reveal="line" className="block" style={{ '--d': '200ms' } as CSSProperties}><span>the work.</span></span>
             </h2>
             <p data-reveal className="mt-6 max-w-[34ch] text-mute">
-              A list of logos tells you nothing. Hover a tool to see where I actually used it — or hover a project to see what it's made of.
+              Hover a tool to see where I used it, or a project to see what it's built with.
             </p>
 
             <ul className="mt-8 border-t border-ink" onPointerLeave={() => setProj(null)}>
@@ -59,7 +57,7 @@ export default function Skills() {
                 ? `${skill.name}: ${skill.projects.length ? `${skill.projects.length} featured build${skill.projects.length > 1 ? 's' : ''}` : 'no featured build'}${skill.also?.length ? ` · also at ${skill.also.join(', ')}` : ''}`
                 : proj
                   ? `${projects.find((x) => x.id === proj)!.title}: ${layers.flatMap((l) => l.skills).filter((s) => s.projects.includes(proj)).length} tools`
-                  : 'Hover or tap anything.'}
+                  : ''}
             </p>
           </div>
         </div>
@@ -91,7 +89,6 @@ export default function Skills() {
                         }`}
                       >
                         {s.name}
-                        <sup className="mono ml-0.5 align-super text-[0.5rem] text-mute">{s.projects.length || ''}</sup>
                       </button>
                       {i < layer.skills.length - 1 && <span className="px-1.5 text-xl text-ink/25">/</span>}
                     </li>
@@ -100,7 +97,6 @@ export default function Skills() {
               </ul>
             </div>
           ))}
-          <p className="mono border-t border-ink pt-4 text-mute normal-case tracking-normal">Superscript = number of featured builds using it.</p>
         </div>
       </div>
     </section>

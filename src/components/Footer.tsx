@@ -1,21 +1,9 @@
-import { useEffect, useState } from 'react'
 import { ArrowUp } from 'lucide-react'
 import { profile } from '../data/profile'
 
 const WORD = `${profile.first} ${profile.last}`.toUpperCase().split('')
 
 export default function Footer() {
-  const [ms, setMs] = useState<number | null>(null)
-
-  useEffect(() => {
-    const read = () => {
-      const nav = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined
-      if (nav && nav.domContentLoadedEventEnd > 0) setMs(Math.round(nav.domContentLoadedEventEnd))
-    }
-    if (document.readyState === 'complete') read()
-    else window.addEventListener('load', read, { once: true })
-  }, [])
-
   return (
     <footer className="relative overflow-hidden bg-ink pb-28 pt-16 text-bone sm:pb-32">
       <div className="grid gap-10 px-4 sm:grid-cols-2 sm:px-8 lg:grid-cols-12">
@@ -66,10 +54,6 @@ export default function Footer() {
 
       <div className="mono mt-10 flex flex-col gap-2 px-4 normal-case tracking-normal text-bone/40 sm:flex-row sm:justify-between sm:px-8">
         <span>© {new Date().getFullYear()} {profile.name}</span>
-        <span>
-          React + Tailwind CSS. No animation library, no images, no trackers.
-          {ms !== null && <> Ready in <span className="text-lichen">{ms} ms</span>.</>}
-        </span>
       </div>
     </footer>
   )

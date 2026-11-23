@@ -36,7 +36,7 @@ export default function About() {
   return (
     <section id="about" className="relative bg-ink text-bone">
       <div className="px-4 pb-24 pt-20 sm:px-8 sm:pt-28 lg:pb-36">
-        <SectionLabel n="01" label="About" aside="The short version" dark />
+        <SectionLabel n="01" label="About" dark />
 
         <p className="read-para mt-10 max-w-[19ch] text-[clamp(2rem,4.6vw,4.4rem)] leading-[1.02] font-[450] tracking-[-0.025em] sm:mt-14 md:max-w-[24ch]">
           {words.map((w, i) => (

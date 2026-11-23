@@ -10,7 +10,6 @@ export default function Contact() {
         <span className="text-ink">(06)</span>
         <span className="text-bone">Contact</span>
         <span className="h-px flex-1 bg-bone/30" />
-        <span className="hidden sm:inline">Email · Form · GitHub</span>
       </div>
 
       <div className="mt-10 grid gap-14 lg:grid-cols-12">

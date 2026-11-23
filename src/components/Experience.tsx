@@ -9,7 +9,7 @@ export default function Experience() {
 
   return (
     <section id="experience" className="relative bg-ink px-4 py-20 text-bone sm:px-8 sm:py-28">
-      <SectionLabel n="04" label="Experience" aside="git log --graph" dark />
+      <SectionLabel n="04" label="Experience" dark />
 
       <div className="mt-10 grid gap-10 lg:grid-cols-12">
         <h2 className="text-[clamp(2.8rem,6vw,6rem)] leading-[0.88] font-[650] tracking-[-0.045em] lg:col-span-4">
@@ -81,10 +81,6 @@ export default function Experience() {
               </li>
             )
           })}
-          <li className="mono relative grid grid-cols-[2.5rem_1fr] pt-6 normal-case tracking-normal text-bone/40">
-            <span aria-hidden className="flex w-6 justify-center">┴</span>
-            <span>Exact dates are on the résumé.</span>
-          </li>
         </ol>
       </div>
     </section>

@@ -17,7 +17,6 @@ const FIRST = profile.first.toUpperCase().split('')
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
   const letterRefs = useRef<(HTMLSpanElement | null)[]>([])
-  const readoutRef = useRef<HTMLSpanElement>(null)
   const fine = useFinePointer()
   const reduced = useReducedMotion()
 
@@ -49,11 +48,6 @@ export default function Hero() {
         el.style.setProperty('--w', String(Math.round(260 + 540 * e)))
         el.style.setProperty('--s', String(Math.round(100 - 25 * e)))
       })
-      if (readoutRef.current) {
-        const x = String(Math.round(mx)).padStart(4, '0')
-        const y = String(Math.round(my - window.scrollY)).padStart(4, '0')
-        readoutRef.current.textContent = `x ${x} · y ${y}`
-      }
     }
     const onMove = (e: PointerEvent) => {
       if (!visible) return
@@ -102,7 +96,6 @@ export default function Hero() {
       <header className="fade-up relative z-10 grid grid-cols-2 items-start gap-4 px-4 pt-4 sm:px-8 sm:pt-6 lg:grid-cols-12" style={{ '--d': '700ms' } as React.CSSProperties}>
         <div className="mono col-span-1 leading-relaxed lg:col-span-3">
           <span className="font-semibold">M.B.</span>
-          <span className="text-mute"> — Index / 2026</span>
         </div>
         <nav aria-label="Primary" className="col-span-1 justify-self-end lg:col-span-6 lg:justify-self-center">
           <ul className="mono flex flex-col items-end gap-1 sm:flex-row sm:gap-6">
@@ -119,9 +112,6 @@ export default function Hero() {
             ))}
           </ul>
         </nav>
-        <div className="mono hidden text-right text-mute lg:col-span-3 lg:block">
-          <span ref={readoutRef} className="tabular-nums">x 0000 · y 0000</span>
-        </div>
       </header>
 
       <div className="relative flex flex-1 flex-col justify-center px-4 sm:px-8">

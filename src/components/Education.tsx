@@ -6,7 +6,7 @@ import SectionLabel from './SectionLabel'
 export default function Education() {
   return (
     <section id="education" className="relative overflow-hidden px-4 py-20 sm:px-8 sm:py-28">
-      <SectionLabel n="05" label="Study" aside="Next stop: cybersecurity" />
+      <SectionLabel n="05" label="Study" />
 
       <h2 className="mt-10 text-[clamp(2.8rem,6vw,6rem)] leading-[0.88] font-[650] tracking-[-0.045em]">
         <span data-reveal="line" className="block"><span>Learning,</span></span>

@@ -36,7 +36,7 @@ export default function Projects() {
   return (
     <section id="projects" className="relative">
       <div className="px-4 pb-10 pt-16 sm:px-8 sm:pt-24">
-        <SectionLabel n="02" label="Selected work" aside="5 builds · hover, click, poke around" />
+        <SectionLabel n="02" label="Selected work" />
         <h2 className="mt-10 max-w-[14ch] text-[clamp(3rem,9vw,9.5rem)] leading-[0.86] font-[650] tracking-[-0.045em]">
           <span data-reveal="line" className="block"><span>Things I've</span></span>
           <span data-reveal="line" className="block" style={{ '--d': '120ms' } as CSSProperties}>
