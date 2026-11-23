@@ -1,36 +1,37 @@
-# Muluken Bekele — Portfolio
+# Muluken Bekele
 
-React 19 + TypeScript + Tailwind CSS v4, built with Vite. No animation library, no images: every visual is CSS or inline SVG.
+**Full-Stack Software Developer · AI & Cloud Applications**
 
-```bash
-npm install
-npm run dev      # http://localhost:5173
-npm run build    # outputs to dist/
-npm run preview
-```
+🌐 [mule2020.github.io](https://mule2020.github.io) · ✉️ [mulukenbekele121@gmail.com](mailto:mulukenbekele121@gmail.com) · 🐙 [github.com/mule2020](https://github.com/mule2020)
 
-## Before publishing
+---
 
-1. **Résumé** — put your PDF at `public/Muluken-Bekele-Resume.pdf` (or change `resumeUrl` in `src/data/profile.ts`).
-2. **Contact form** — with `formEndpoint` empty in `src/data/profile.ts`, the form opens the visitor's mail app with the message pre-filled. To receive messages directly without that step, create a free form endpoint (e.g. Formspree), paste its URL into `formEndpoint`, and the form will POST JSON to it.
-3. **Dates** — the experience section shows roles in order without dates. Add them in `src/data/experience.ts` if you want them on the page.
+I build practical software: web applications, the backend systems behind them, and products with AI in the loop. I have about four years of experience, between company roles and my own projects.
 
-## Where things live
+Most of my work happens behind the interface: REST APIs, Postgres schemas, caches, queues and deployment pipelines. I like owning a feature from the table design to the button that triggers it. Lately that includes AI, where I treat a model as one more service in the system, with retrieval, embeddings and AWS around it.
 
-| Path | What |
-| --- | --- |
-| `src/data/*` | All content: profile, projects, experience, skills. Edit text here, not in components. |
-| `src/components/Hero.tsx` | Variable-font name that reacts to the pointer, plus the system schematic |
-| `src/components/Projects.tsx` | Project index with a preview that follows the pointer, one chapter per project, case-file overlay |
-| `src/components/visuals/*` | The live mini-interfaces for each project, built from HTML and CSS |
-| `src/hooks/index.ts` | Shared IntersectionObserver reveal, active section, media queries |
-| `src/index.css` | Design tokens, reveal and motion utilities, reduced-motion overrides |
+## What I've built
 
-## Performance notes
+- **Mella** is a bidding platform where customers and sellers meet. It also runs inside Telegram as a Mini App. *Next.js, NestJS, PostgreSQL*
+- **PaperTrail AI** reads uploaded documents. It summarizes them, answers questions with RAG, extracts key dates and obligations, and sends deadline reminders. *React, Python, Amazon Bedrock, Lambda, DynamoDB*
+- **Enterprise A2P SMS Platform** is a multi-client messaging platform with REST APIs and delivery workflows. *NestJS, PostgreSQL, Redis, Docker, Nginx*
+- **Pharmaceutical Inventory System** handles stock monitoring, order tracking and role-based access. *React, TypeScript, Spring Boot, PostgreSQL*
+- **AI Job Application Tracker** keeps a job search organized in one place.
 
-- All scroll reveals go through a single IntersectionObserver. There are no scroll listeners.
-- The paragraph word reveal and the dock's progress bar use CSS scroll-driven animations. Browsers without support show the content statically.
-- The pointer effects in the hero and the project index run one `requestAnimationFrame` per pointer move. They write styles directly, so React doesn't re-render, and they only run on devices with a fine pointer.
-- The live demos (bid feed, log tail, extraction steps) only tick while they are on screen.
-- `prefers-reduced-motion` turns off the loops, the reveals and the pointer effects.
-- Fonts are self-hosted through Fontsource, so there are no third-party requests.
+## Experience
+
+- **Outlier AI**, AI Trainer (Coding), freelance
+- **Zoom Tech Trading PLC**, Software Engineer
+- **Medaf Delivery PLC**, Junior Software Engineer
+
+## Education & certifications
+
+- Cybersecurity Diploma, North American College of Information Technology *(in progress)*
+- Full Stack .NET Cloud Developer Program, Humber College
+- B.Sc. Computer Science, Andhra University
+- AWS Certified AI Practitioner
+- AWS Certified Cloud Practitioner
+
+## Get in touch
+
+If you're hiring for full-stack, backend or AI application work, or you have a project that needs another engineer, email me at **[mulukenbekele121@gmail.com](mailto:mulukenbekele121@gmail.com)** or use the form on [my website](https://mule2020.github.io/#contact).
